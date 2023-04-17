@@ -1,0 +1,277 @@
+*, ::after, ::before {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #212529;
+	text-align: left;
+	background-color: #fff;
+}
+
+html {
+	font-family: sans-serif;
+	line-height: 1.15;
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent;
+}
+
+:root {
+	--blue:#007bff: ;
+	--indigo:#6610f2: ;
+	--purple:#6f42c1: ;
+	--pink:#e83e8c: ;
+	--red:#dc3545: ;
+	--orange:#fd7e14: ;
+	--yellow:#ffc107: ;
+	--green:#28a745: ;
+	--teal:#20c997: ;
+	--cyan:#17a2b8: ;
+	--white:#fff: ;
+	--gray:#6c757d: ;
+	--gray-dark:#343a40: ;
+	--primary:#007bff: ;
+	--secondary:#6c757d: ;
+	--success:#28a745: ;
+	--info:#17a2b8: ;
+	--warning:#ffc107: ;
+	--danger:#dc3545: ;
+	--light:#f8f9fa: ;
+	--dark:#343a40: ;
+	--breakpoint-xs:0: ;
+	--breakpoint-sm:576px: ;
+	--breakpoint-md:768px: ;
+	--breakpoint-lg:992px: ;
+	--breakpoint-xl:1200px: ;
+	--font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji": ;
+	--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace: ;
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+/* @media all and (min-width:576px) */
+.container, .container-sm {
+	max-width: 540px;
+}
+
+/* @media all and (min-width:768px) */
+.container, .container-md, .container-sm {
+	max-width: 720px;
+}
+
+/* @media all and (min-width:992px) */
+.container, .container-lg, .container-md, .container-sm {
+	max-width: 960px;
+}
+
+/* @media all and (min-width:1200px) */
+.container, .container-lg, .container-md, .container-sm, .container-xl {
+	max-width: 1140px;
+}
+
+.row {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+.mt-3, .my-3 {
+	margin-top: 1rem !important;
+}
+
+hr {
+	box-sizing: content-box;
+	height: 0px;
+	overflow: visible;
+}
+
+hr {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border: 0;
+	border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+.justify-content-center {
+	-ms-flex-pack: center !important;
+	justify-content: center !important;
+}
+
+button {
+	border-radius: 0;
+}
+
+button, input, optgroup, select, textarea {
+	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+button, input {
+	overflow: visible;
+}
+
+.canvas-container {
+	display: none;
+}
+
+.mb-3, .my-3 {
+	margin-bottom: 1rem !important;
+}
+
+.col {
+	-ms-flex-preferred-size: 0px;
+	flex-basis: 0px;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	max-width: 100%;
+}
+
+.text-center {
+	text-align: center !important;
+}
+
+img {
+	vertical-align: middle;
+	border-style: none;
+}
+
+.img-fluid {
+	max-width: 100%;
+	height: auto;
+}
+
+button, select {
+	text-transform: none;
+}
+
+[type=button], [type=reset], [type=submit], button {
+	-webkit-appearance: button;
+}
+
+.btn {
+	display: inline-block;
+	font-weight: 400;
+	color: #212529;
+	text-align: center;
+	vertical-align: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-color: transparent;
+	border: 1px solid transparent;
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	line-height: 1.5;
+	border-radius: .25rem;
+	transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.btn-warning {
+	color: #212529;
+	background-color: #ffc107;
+	border-color: #ffc107;
+}
+
+.btn-info {
+	color: #fff;
+	background-color: #17a2b8;
+	border-color: #17a2b8;
+}
+
+.btn-primary {
+	color: #fff;
+	background-color: #007bff;
+	border-color: #007bff;
+}
+
+.mt-2, .my-2 {
+	margin-top: 0.5rem !important;
+}
+
+.ml-2, .mx-2 {
+	margin-left: 0.5rem !important;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+	cursor: pointer;
+}
+
+:not(:disabled):not(.disabled).btn {
+	cursor: pointer;
+}
+
+.fa, .fa-brands, .fa-classic, .fa-regular, .fa-sharp, .fa-solid, .fab, .far, .fas {
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	display: var(--fa-display,inline-block);
+	font-style: normal;
+	font-variant: normal;
+	line-height: 1;
+	text-rendering: auto;
+}
+
+.fa-brands, .fab {
+	font-family: "Font Awesome 6 Brands";
+}
+
+.fa-brands, .fab {
+	font-weight: 400;
+}
+
+.fa-facebook-f::before {
+	content: "\f39e";
+}
+
+.fa-classic, .fa-regular, .fa-solid, .far, .fas {
+	font-family: "Font Awesome 6 Free";
+}
+
+.fa-solid, .fas {
+	font-weight: 900;
+}
+
+.fa-download::before {
+	content: "\f019";
+}
+
+.fa-add::before, .fa-plus::before {
+	content: "\2b";
+}
+
+.col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+	position: relative;
+	width: 100%;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin-top: 0px;
+	margin-bottom: 0.5rem;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+	margin-bottom: 0.5rem;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.h1, h1 {
+	font-size: 2.5rem;
+}

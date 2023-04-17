@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cao Đẳng Công Nghệ Thông Tin - Thay Frame Avatar</title>
+    <meta
+      name="description"
+      content="Tuyển sinh Cao đẳng chính quy 2022. Xét tuyển trực tuyến dựa trên kết quả HKI lớp 12 và kỳ thi THPT Quốc gia"
+    />
+    <meta
+      name="keywords"
+      content="cao đẳng sài gòn, xét tuyển online, xét tuyển trực tuyến, dăng ký xét tuyển online, dăng ký xét tuyển trực tuyến, tuyển sinh online, tuyển sinh trực tuyến"
+    />
+    <meta name="author" content="caodangsaigon.edu.vn" />
+    <meta property="og:site_name" content="Trường Cao Đẳng Sài Gòn" />
+    <meta property="og:image" content="http://itc.edu.vn" />
+    <meta property="og:title" content="Cao Đẳng Công Nghệ Thông Tin - xét tuyển trực tuyến" />
+    <meta
+      property="og:description"
+      content="Tuyển sinh Cao đẳng chính quy 2022. Xét tuyển trực tuyến dựa trên kết quả HKI lớp 12 và kỳ thi THPT Quốc gia"
+    />
+    <meta property="og:url" content="http://itc.edu.vn" />
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link href="./plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./plugins/jquery_ui/jquery-ui.min.css" rel="stylesheet" />
+    <link href="./plugins/fontawesome/all.min.css" rel="stylesheet" />
+    <link href="./css/Avatar.css" rel="stylesheet" />
+</head>
+<body>
+<!-- <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '801357370724241',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v14.0'
+    });
+  };
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/all.js"></script> -->
+    <div class="container">
+        <div class="row mt-3">
+            <div class="col text-center">
+                <h1>Thay Frame Avatar</h1>
+            </div>
+        </div>
+        <hr>
+        <!-- form -->        
+        <div class="row justify-content-center">
+            <input type="file" id="txtFile" style="display: none" accept="image/*"/>
+            <button type="button" class="btn btn-warning mt-2" id="btnBrowse"><i class="fa-solid fa-plus"></i> Chọn hình (500 x 500)</button>
+            <button type="button" class="btn btn-info ml-2 mt-2" id="btnDownload"><i class="fa-solid fa-download"></i> Tải hình</button>
+            <button type="button" class="btn btn-primary ml-2 mt-2" id="btnSend"><i class="fa-brands fa-facebook-f"></i> Chia sẻ facebook</button>
+        </div>
+        <input type="hidden" id="hidImage" value="" />
+        <hr>
+        <canvas id="cvsPreview"></canvas>
+        <div id="previewImage" class="text-center mb-3">
+          <img id="imgResult" src="./img/avt6.png" class="img-fluid"/>
+        </div>
+    </div>
+    <script src="./plugins/jquery/jquery-3.5.1.min.js"></script>
+    <script src="./plugins/jquery_ui/jquery-ui.min.css"></script>
+    <script src="./plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="./plugins/fabric/fabric.min.js"></script>
+    <!-- <script src="https://unpkg.com/konva@7.1.3/konva.min.js"></script> -->
+    <script>
+      var canvas;
+      var imageData;
+      var avatar;
+      $(document).ready(function() {
+        canvas = new fabric.Canvas('cvsPreview', {
+          backgroundColor: '#fff',
+          width: 1024,
+          height: 1024
+        });        
+
+        fabric.Image.fromURL('./img/avt6.png', function(oImg) {
+          oImg.selectable = false;
+          canvas.add(oImg);
+          canvas.sendToBack(oImg);
+        });
+
+        $('#btnBrowse').click(function(){
+          $('#txtFile').trigger('click');
+        });
+
+        $('#txtFile').change(function() {
+            input = $(this)[0];
+            if (input.files && input.files[0]) {
+              var reader = new FileReader();
+              reader.onload = function (e) {
+                fabric.Image.fromURL(e.target.result, function(oImg) {
+                  if (avatar) canvas.remove(avatar);
+                  avatar = oImg;
+                  avatar.scaleToWidth(885);
+                  avatar.scaleToHeight(885);
+                  avatar.top = 158;
+                  avatar.left = 72;
+                  canvas.add(avatar);
+                  canvas.sendToBack(avatar);
+                  renderNShow();
+                  //reset save
+                  $('#hidImage').val("");
+                });
+              }
+              reader.readAsDataURL(input.files[0]);
+            }
+        });
+
+        function renderNShow() {
+          imageData = canvas.toDataURL('png')
+          $('#imgResult').attr('src', imageData);
+        }
+
+        $('#btnDownload').click(function() {
+          if ($.trim($('#hidImage').val()).length == 0) {
+            $.post('save.php', JSON.stringify({imageData: imageData}), function(res) {
+              if (res.errorCode === 0) {
+                var imgUrl = window.location.origin + '/thay-avatar/data/' + res.message;
+                $('#hidImage').val(imgUrl);
+                downloadImage(imgUrl, 'avatar.png');
+              } else {
+                $('#hidImage').val("");
+              }
+            },'json');
+          } else {
+            downloadImage($('#hidImage').val(), 'avatar.png');
+          }
+        });
+
+        $('#btnSend').click(function(){
+          if ($.trim($('#hidImage').val()).length == 0) {
+            $.post('save.php', JSON.stringify({imageData: imageData}), function(res) {
+              if (res.errorCode === 0) {
+                var imgUrl = window.location.origin + '/thay-avatar/data/' + res.message;
+                $('#hidImage').val(imgUrl);
+                var strUrl = encodeURIComponent(imgUrl);
+                sharefbimage(strUrl);
+              } else {
+                $('#hidImage').val("");
+              }
+            },'json');
+          } else {
+            var strUrl = encodeURIComponent($('#hidImage').val());
+            sharefbimage(strUrl);
+          }
+        });
+      });
+      function downloadImage(url, fileName) {
+        var link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+      function sharefbimage(imgUrl) {
+        var extraParams = '&redirect_uri=' + encodeURIComponent(location.href);
+        extraParams += '&href=' + imgUrl;
+        extraParams += '&hashtag=' + encodeURIComponent('#caodangcongnghethongtin');
+        window.location.href = 'https://www.facebook.com/dialog/share?app_id=801357370724241&display=popup&href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2F' + extraParams;
+        // FB.init({ appId: '801357370724241', status: true, cookie: true });
+        // FB.ui(
+        //   {
+        //       method: 'share',
+        //       display: 'popup',
+        //       href: window.location.href,
+        //       link: 'https://developers.facebook.com/docs/',
+        //       picture: imgUrl,
+        //       hashtag: '#caodangsaigon'
+        //   },
+        //   function (response) {
+        //       if (response && response.post_id) {
+        //           alert('success');
+        //       } else {
+        //           alert('error');
+        //       }
+        //   }
+        // );
+      }
+    </script>
+</body>
+</html>
